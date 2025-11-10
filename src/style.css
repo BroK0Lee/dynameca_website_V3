@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+}
+
+.slide {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.slide h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Section - Deep Blue */
+#hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Configurator Section - Orange/Red */
+#configurator {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Nos Services Section - Green/Teal */
+#services {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Boutique Section - Purple/Pink */
+#boutique {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Nos Valeurs Section - Yellow/Orange */
+#valeurs {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Contact Section - Dark Blue/Purple */
+#contact {
+  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
