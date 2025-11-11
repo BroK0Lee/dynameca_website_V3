@@ -5,33 +5,41 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Website GSAP</title>
+    <meta name="theme-color" content="#0f172a" />
+    <style>
+      /* Empêche le flash de contenu non stylisé (FOUC)
+         CSS critique inline : couleur de fond et état initial des sections.
+         On évite l'usage de !important pour que GSAP puisse appliquer
+         des styles inline lors de l'animation. */
+
+      html, body, #app {
+        background-color: #0f172a; /* couleur sombre pour la première peinture */
+        min-height: 100%;
+      }
+
+      .slide {
+        opacity: 0;
+      }
+
+      /* Empilage vertical + perspective 3D pour le Hero */
+      #hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* centrer horizontalement */
+        justify-content: center; /* centrer verticalement si nécessaire */
+        gap: 0.5rem;
+        perspective: 800px; /* pour les rotations 3D */
+        text-align: center;
+      }
+
+      #hero_title,
+      #hero_text {
+        display: block; /* évite toute mise en ligne côte à côte */
+      }
+    </style>
   </head>
   <body>
-    <div id="app">
-      <section id="hero" class="slide">
-        <h1>Hero Section</h1>
-      </section>
-      
-      <section id="configurator" class="slide">
-        <h1>Configurator Section</h1>
-      </section>
-      
-      <section id="services" class="slide">
-        <h1>Nos Services Section</h1>
-      </section>
-      
-      <section id="boutique" class="slide">
-        <h1>Boutique Section</h1>
-      </section>
-      
-      <section id="valeurs" class="slide">
-        <h1>Nos Valeurs Section</h1>
-      </section>
-      
-      <section id="contact" class="slide">
-        <h1>Contact Section</h1>
-      </section>
-    </div>
-    <script type="module" src="/src/main.js"></script>
+    <div id="app"></div> <!-- Le contenu est maintenant géré par React -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

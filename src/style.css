@@ -1,61 +1,626 @@
+/**
+ * Feuille de styles principale
+ * Optimisée pour les animations GSAP - aucun !important
+ */
+
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+html {
+  background-color: #0f172a;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Réserve toujours l'espace pour la scrollbar - évite le layout shift */
+  scrollbar-gutter: stable;
+  overflow-y: scroll; /* Force la gouttière même si le contenu est court */
+}
+
+body {
+  background-color: #0f172a;
+  color: #ffffff;
+  min-height: 100%;
+}
+
+/* ===== SCROLLBAR PERSONNALISÉE ===== */
+
+/* Style moderne de la scrollbar (WebKit: Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5); /* Fond semi-transparent */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.6); /* Amber 600 avec transparence */
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.9); /* Plus opaque au survol */
+}
+
+/* Firefox - scrollbar fine avec couleurs personnalisées */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 119, 6, 0.6) rgba(15, 23, 42, 0.5);
+}
+
+/* ===== MODALE MON COMPTE ===== */
+
+/* Overlay - Fond flouté semi-transparent */
+.modale-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* Au-dessus du header (z-index 1000) */
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Contenu de la modale - Boîte claire centrée */
+.modale-contenu {
+  background-color: #f8fafc; /* Fond clair (slate-50) */
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+              0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton fermer (X) */
+.modale-bouton-fermer {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #64748b; /* Slate-500 */
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modale-bouton-fermer:hover {
+  background-color: #e2e8f0; /* Slate-200 */
+  color: #0f172a; /* Slate-900 */
+}
+
+/* Titre de la modale */
+.modale-titre {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #0f172a; /* Slate-900 */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Formulaire */
+.modale-formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Groupe input (input + icône) */
+.input-groupe {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icone {
+  position: absolute;
+  left: 1rem;
+  color: #64748b; /* Slate-500 */
+  pointer-events: none;
+}
+
+.input-champ {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem; /* Espace pour l'icône */
+  border: 2px solid #e2e8f0; /* Slate-200 */
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-champ::placeholder {
+  color: #94a3b8; /* Slate-400 */
+}
+
+.input-champ:focus {
+  border-color: #d97706; /* Amber 600 au focus */
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+/* Input mot de passe avec toggle visibility */
+.input-groupe:has(.input-toggle-password) .input-champ {
+  padding-right: 3rem; /* Espace pour le bouton toggle */
+}
+
+.input-toggle-password {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.input-toggle-password:hover {
+  color: #0f172a;
+}
+
+/* Lien utilitaire (mot de passe oublié) */
+.lien-utilitaire {
+  background: none;
+  border: none;
+  color: #d97706; /* Amber 600 */
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: right;
+  padding: 0;
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.lien-utilitaire:hover {
+  color: #b45309; /* Amber 700 */
+}
+
+/* Bouton primaire (Se connecter) */
+.bouton-primaire {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: #d97706; /* Amber 600 */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.bouton-primaire:hover:not(:disabled) {
+  background-color: #b45309; /* Amber 700 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.bouton-primaire:disabled {
+  background-color: #cbd5e1; /* Slate-300 */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Séparation "Pas encore de compte ?" */
+.modale-separation {
+  margin: 1.5rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.modale-separation span {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.modale-separation::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  z-index: 0;
+}
+
+/* Bouton secondaire (Créer un compte) */
+.bouton-secondaire {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: #ffffff;
+  color: #d97706;
+  border: 2px solid #d97706;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bouton-secondaire:hover {
+  background-color: #d97706;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
 }
 
 #app {
   width: 100%;
+  min-height: 100vh;
 }
 
-.slide {
-  width: 100%;
+/* Blocage du scroll pendant l'animation d'introduction */
+body.scroll-bloque {
+  overflow: hidden;
   height: 100vh;
+}
+
+/* ===== CLASSES RÉUTILISABLES ===== */
+
+/* Header principal fixe */
+.header-principal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
+  justify-content: space-between;
+  padding: 0 3rem;
+  background-color: rgba(15, 23, 42, 0.3); /* Légère teinte sombre avec transparence */
+  backdrop-filter: blur(10px); /* Effet de flou sur le contenu en arrière-plan */
+  -webkit-backdrop-filter: blur(10px); /* Support Safari */
+  z-index: 1000;
+  opacity: 0; /* État initial pour GSAP */
 }
 
-.slide h1 {
+/* Logo / Nom de l'entreprise */
+.header-logo {
+  flex-shrink: 0;
+}
+
+.logo-bouton {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.logo-bouton:hover {
+  color: #d97706; /* Amber 600 */
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.header-navigation {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-lien {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-lien::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #d97706; /* Amber 600 */
+  transition: width 0.3s ease;
+}
+
+.nav-lien:hover {
+  color: #d97706; /* Amber 600 */
+}
+
+.nav-lien:hover::after {
+  width: 80%;
+}
+
+/* Lien Mon Compte - Style spécial */
+.nav-lien-compte {
+  color: #d97706; /* Toujours Amber 600 */
+  font-weight: 600;
+}
+
+.nav-lien-compte::after {
+  background-color: #ffffff; /* Soulignement blanc au hover */
+}
+
+.nav-lien-compte:hover {
+  color: #ffffff; /* Hover blanc (inverse des autres) */
+}
+
+/* Sections plein écran */
+.section-plein-ecran {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+}
+
+/* Titres de section */
+.titre-section {
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1rem;
 }
 
-/* Hero Section - Deep Blue */
+/* Sous-titres */
+.sous-titre-section {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== ÉTATS POUR ANIMATIONS GSAP ===== */
+
+/* État initial des sections (GSAP les rendra visibles) */
+.slide {
+  opacity: 0;
+}
+
+/* ===== SECTIONS SPÉCIFIQUES ===== */
+
+/* Hero Section - Fond image avec perspective 3D */
 #hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  perspective: 800px;
+  text-align: center;
+  background-image: url('/Hero_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-/* Configurator Section - Orange/Red */
+#hero_title,
+#hero_text {
+  display: block;
+}
+
+/* Titre Hero avec couleur amber */
+#hero_title {
+  color: #d97706; /* Amber 600 */
+}
+
+/* Texte Hero reste blanc */
+#hero_text {
+  color: #ffffff;
+}
+
+/* Indicateur de découverte avec flèche animée */
+.hero-decouverte {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  z-index: 10;
+}
+
+.decouverte-texte {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.decouverte-fleche {
+  color: #d97706; /* Amber 600 pour cohérence */
+}
+
+/* Configurator Section - Gradient rose/orange */
 #configurator {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-/* Nos Services Section - Green/Teal */
+/* Services Section - Gradient bleu cyan */
 #services {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-/* Boutique Section - Purple/Pink */
+/* Boutique Section - Gradient vert turquoise */
 #boutique {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
-/* Nos Valeurs Section - Yellow/Orange */
+/* Valeurs Section - Gradient rose jaune */
 #valeurs {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
-/* Contact Section - Dark Blue/Purple */
+/* Contact Section - Gradient cyan violet foncé */
 #contact {
   background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .header-principal {
+    padding: 0 1.5rem;
+    height: 70px;
+  }
+
+  .logo-bouton {
+    font-size: 1.5rem;
+  }
+
+  .header-navigation {
+    gap: 1rem;
+  }
+
+  .nav-lien {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .titre-section {
+    font-size: 2rem;
+  }
+
+  .sous-titre-section {
+    font-size: 1.125rem;
+  }
+
+  .section-plein-ecran {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-principal {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .logo-bouton {
+    font-size: 1.25rem;
+  }
+
+  .header-navigation {
+    gap: 0.5rem;
+  }
+
+  .nav-lien {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .titre-section {
+    font-size: 1.5rem;
+  }
+
+  .sous-titre-section {
+    font-size: 1rem;
+  }
+
+  /* Modale responsive - Tablette */
+  .modale-contenu {
+    padding: 2rem;
+    max-width: 90%;
+  }
+
+  .modale-titre {
+    font-size: 1.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-principal {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .logo-bouton {
+    font-size: 1.25rem;
+  }
+
+  .header-navigation {
+    gap: 0.5rem;
+  }
+
+  .nav-lien {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .titre-section {
+    font-size: 1.5rem;
+  }
+
+  .sous-titre-section {
+    font-size: 1rem;
+  }
+
+  /* Modale responsive - Mobile */
+  .modale-contenu {
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+
+  .modale-titre {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-champ {
+    font-size: 0.9375rem;
+  }
+
+  .bouton-primaire,
+  .bouton-secondaire {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
 }
