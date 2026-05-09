@@ -623,17 +623,121 @@ body.scroll-bloque {
 
 /* Réalisations Section - Gradient rose jaune */
 #realisations {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  background-image: url('/Realisations_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-/* Contact Section - Gradient cyan violet foncé */
+/* Contact Section - Image hero en fond */
 #contact {
-  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+  background-image: url('/Hero_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Bloc d'informations de contact */
+.contact-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Ligne d'une info de contact (label + valeur) */
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Label (Email, Téléphone...) */
+.contact-info-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d97706;
+  min-width: 6rem;
+}
+
+/* Valeur de contact */
+.contact-info-valeur {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+/* ===== HAMBURGER & NAV MOBILE ===== */
+
+/* Bouton hamburger - caché sur desktop */
+.hamburger-bouton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: background 0.2s ease;
+  z-index: 1100;
+}
+
+.hamburger-bouton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Menu mobile - overlay plein écran */
+.nav-mobile {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 999;
+}
+
+/* Liens du menu mobile */
+.nav-mobile-lien {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  transition: color 0.2s ease, background 0.2s ease;
+  width: 100%;
+  max-width: 20rem;
+  text-align: center;
+}
+
+.nav-mobile-lien:hover {
+  color: #d97706;
+  background: rgba(217, 119, 6, 0.08);
 }
 
 /* ===== RESPONSIVE ===== */
 
+/* ---- Tablette et mobile (≤ 768px) ---- */
 @media (max-width: 768px) {
+
+  /* Header */
   .header-principal {
     padding: 0 1.5rem;
     height: 70px;
@@ -643,13 +747,19 @@ body.scroll-bloque {
     font-size: 1.5rem;
   }
 
+  /* Navigation desktop cachée */
   .header-navigation {
-    gap: 1rem;
+    display: none;
   }
 
-  .nav-lien {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+  /* Bouton hamburger visible */
+  .hamburger-bouton {
+    display: flex;
+  }
+
+  /* Sections */
+  .section-plein-ecran {
+    padding: 6rem 1.5rem 2rem;
   }
 
   .titre-section {
@@ -660,28 +770,64 @@ body.scroll-bloque {
     font-size: 1.125rem;
   }
 
+  /* hero-contenu : repositionné en flux normal centré */
+  .hero-contenu {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  /* Boutons Hero en colonne */
+  .hero-boutons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-bouton {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  /* Infos contact en colonne */
+  .contact-info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  /* Fix background-attachment: fixed buggé sur iOS Safari */
+  #hero,
+  #deposer-projet,
+  #comment-ca-marche,
+  #offres-tarifs,
+  #realisations,
+  #contact {
+    background-attachment: scroll;
+  }
+}
+
+/* ---- Mobile (≤ 480px) ---- */
+@media (max-width: 480px) {
+
+  /* Header */
+  .header-principal {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .logo-bouton {
+    font-size: 1.25rem;
+  }
+
+  /* Sections */
   .section-plein-ecran {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-principal {
-    padding: 0 1rem;
-    height: 60px;
-  }
-
-  .logo-bouton {
-    font-size: 1.25rem;
-  }
-
-  .header-navigation {
-    gap: 0.5rem;
-  }
-
-  .nav-lien {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+    padding: 5rem 1rem 2rem;
   }
 
   .titre-section {
@@ -692,45 +838,7 @@ body.scroll-bloque {
     font-size: 1rem;
   }
 
-  /* Modale responsive - Tablette */
-  .modale-contenu {
-    padding: 2rem;
-    max-width: 90%;
-  }
-
-  .modale-titre {
-    font-size: 1.625rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-principal {
-    padding: 0 1rem;
-    height: 60px;
-  }
-
-  .logo-bouton {
-    font-size: 1.25rem;
-  }
-
-  .header-navigation {
-    gap: 0.5rem;
-  }
-
-  .nav-lien {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-  }
-
-  .titre-section {
-    font-size: 1.5rem;
-  }
-
-  .sous-titre-section {
-    font-size: 1rem;
-  }
-
-  /* Modale responsive - Mobile */
+  /* Modale */
   .modale-contenu {
     padding: 1.5rem;
     max-width: 95%;
@@ -751,3 +859,5 @@ body.scroll-bloque {
     font-size: 0.9375rem;
   }
 }
+
+
