@@ -3,10 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useStore } from '../store/useStore.ts'
 
 /**
- * Initialise les animations GSAP pour la section Configurator
- * @param section - L'élément HTML de la section Configurator
+ * Initialise les animations GSAP pour la section Déposer un projet
+ * @param section - L'élément HTML de la section DeposerUnProjet
  */
-export function initialiserAnimationConfigurator(section: HTMLElement) {
+export function initialiserAnimationDeposerUnProjet(section: HTMLElement) {
   // Animation de la section lors du défilement
   gsap.fromTo(
     section,
@@ -59,7 +59,7 @@ export function initialiserAnimationConfigurator(section: HTMLElement) {
     trigger: section,
     start: 'top center',
     end: 'bottom center',
-    onEnter: () => useStore.getState().definirSectionActive('configurator'),
-    onEnterBack: () => useStore.getState().definirSectionActive('configurator'),
+    onEnter: () => useStore.getState().definirSectionActive('deposer-projet'),
+    onEnterBack: () => useStore.getState().definirSectionActive('deposer-projet'),
   })
 }

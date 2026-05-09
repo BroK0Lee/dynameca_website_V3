@@ -3,10 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useStore } from '../store/useStore.ts'
 
 /**
- * Initialise les animations GSAP pour la section Boutique
- * @param section - L'élément HTML de la section Boutique
+ * Initialise les animations GSAP pour la section Offres et tarifs
+ * @param section - L'élément HTML de la section OffresEtTarifs
  */
-export function initialiserAnimationBoutique(section: HTMLElement) {
+export function initialiserAnimationOffresEtTarifs(section: HTMLElement) {
   // Animation de la section lors du défilement
   gsap.fromTo(
     section,
@@ -59,7 +59,7 @@ export function initialiserAnimationBoutique(section: HTMLElement) {
     trigger: section,
     start: 'top center',
     end: 'bottom center',
-    onEnter: () => useStore.getState().definirSectionActive('boutique'),
-    onEnterBack: () => useStore.getState().definirSectionActive('boutique'),
+    onEnter: () => useStore.getState().definirSectionActive('offres-tarifs'),
+    onEnterBack: () => useStore.getState().definirSectionActive('offres-tarifs'),
   })
 }

@@ -395,7 +395,7 @@ body.scroll-bloque {
 
 /* Titres de section */
 .titre-section {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   text-align: center;
   color: #ffffff;
@@ -405,7 +405,7 @@ body.scroll-bloque {
 
 /* Sous-titres */
 .sous-titre-section {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
@@ -437,19 +437,53 @@ body.scroll-bloque {
   background-attachment: fixed;
 }
 
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+/* Conteneur du texte hero - positionné à droite */
+.hero-contenu {
+  position: absolute;
+  right: 10rem;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 50rem;
+}
+
 #hero_title,
 #hero_text {
   display: block;
+  text-align: center;
 }
 
 /* Titre Hero avec couleur amber */
 #hero_title {
   color: #d97706; /* Amber 600 */
+  text-shadow: 0 0 10px rgba(217, 119, 6, 0.2);
 }
 
 /* Texte Hero reste blanc */
 #hero_text {
   color: #ffffff;
+}
+
+/* Description Hero - paragraphe long */
+#hero_description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.7;
+  margin-top: 2rem;
 }
 
 /* Indicateur de découverte avec flèche animée */
@@ -496,6 +530,26 @@ body.scroll-bloque {
 
 /* Valeurs Section - Gradient rose jaune */
 #valeurs {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Déposer un projet Section - Gradient rose/orange */
+#deposer-projet {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Comment ça marche Section - Gradient bleu cyan */
+#comment-ca-marche {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Offres et tarifs Section - Gradient vert turquoise */
+#offres-tarifs {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Exemples Section - Gradient rose jaune */
+#exemples {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 

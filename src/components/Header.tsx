@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { initialiserAnimationHeader } from '../Animations/animation_header.ts'
 import { scrollVerSection } from '../Animations/animation_app.ts'
-import { useStore } from '../store/useStore.ts'
 
 /**
  * Composant Header - Navigation principale fixe
@@ -9,7 +8,7 @@ import { useStore } from '../store/useStore.ts'
  */
 function Header() {
   const headerRef = useRef<HTMLElement>(null)
-  const ouvrirModaleCompte = useStore((state) => state.ouvrirModaleCompte)
+
 
   useEffect(() => {
     // Initialiser les animations GSAP après le montage du composant
@@ -35,7 +34,7 @@ function Header() {
           className="logo-bouton"
           aria-label="Retour à l'accueil"
         >
-          ClicnCut
+          DYNAMECA
         </button>
       </div>
 
@@ -48,40 +47,34 @@ function Header() {
           Accueil
         </button>
         <button
-          onClick={() => gererClicNavigation('configurator')}
+          onClick={() => gererClicNavigation('deposer-projet')}
           className="nav-lien"
         >
-          Configurator
+          Déposer un projet
         </button>
         <button
-          onClick={() => gererClicNavigation('services')}
+          onClick={() => gererClicNavigation('comment-ca-marche')}
           className="nav-lien"
         >
-          Services
+          Comment ça marche
         </button>
         <button
-          onClick={() => gererClicNavigation('boutique')}
+          onClick={() => gererClicNavigation('offres-tarifs')}
           className="nav-lien"
         >
-          Boutique
+          Offres et tarifs
         </button>
         <button
-          onClick={() => gererClicNavigation('valeurs')}
+          onClick={() => gererClicNavigation('exemples')}
           className="nav-lien"
         >
-          Valeurs
+          Exemples
         </button>
         <button
           onClick={() => gererClicNavigation('contact')}
           className="nav-lien"
         >
           Contact
-        </button>
-        <button
-          onClick={ouvrirModaleCompte}
-          className="nav-lien nav-lien-compte"
-        >
-          Mon Compte
         </button>
       </nav>
     </header>

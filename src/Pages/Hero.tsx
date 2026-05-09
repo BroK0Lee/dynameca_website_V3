@@ -22,8 +22,11 @@ function Hero() {
       id="hero"
       className="section-plein-ecran slide"
     >
-      <h1 id="hero_title" className="titre-section">Hero Section</h1>
-      <p id="hero_text" className="sous-titre-section">Avec effet 3D</p>
+      <div className="hero-contenu">
+        <h1 id="hero_title" className="titre-section">DYNAMECA</h1>
+        <p id="hero_text" className="sous-titre-section">Concevoir, structurer et concrétiser vos projets</p>
+        <p id="hero_description" className="hero-description">De l'idée initiale à la réalisation finale, DYNAMECA vous accompagne à chaque étape de votre projet : cadrage technique, conception 3D, plans, fichiers de fabrication, dossier fournisseur et accompagnement dans la réalisation d'un prototype ou d'une mise en production.</p>
+      </div>
       
       {/* Indicateur de découverte avec flèche */}
       <div id="hero_decouverte" className="hero-decouverte">

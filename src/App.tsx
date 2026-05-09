@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import Header from './components/Header.tsx'
 import Hero from './Pages/Hero.tsx'
-import Configurator from './Pages/Configurator.tsx'
-import Services from './Pages/Services.tsx'
-import Boutique from './Pages/Boutique.tsx'
-import Valeurs from './Pages/Valeurs.tsx'
+import DeposerUnProjet from './Pages/DeposerUnProjet.tsx'
+import CommentCaMarche from './Pages/CommentCaMarche.tsx'
+import OffresEtTarifs from './Pages/OffresEtTarifs.tsx'
+import Exemples from './Pages/Exemples.tsx'
 import Contact from './Pages/Contact.tsx'
 import Compte from './Pages/Compte.tsx'
 import { initialiserAnimationsApp } from './Animations/animation_app.ts'
@@ -27,17 +27,17 @@ function App() {
       {/* Section Hero - Page d'accueil avec effet 3D */}
       <Hero />
 
-      {/* Section Configurator - Configuration */}
-      <Configurator />
+      {/* Section DeposerUnProjet - Déposer un projet */}
+      <DeposerUnProjet />
 
-      {/* Section Services - Nos services */}
-      <Services />
+      {/* Section CommentCaMarche - Comment ça marche */}
+      <CommentCaMarche />
 
-      {/* Section Boutique - Notre boutique */}
-      <Boutique />
+      {/* Section OffresEtTarifs - Offres et tarifs */}
+      <OffresEtTarifs />
 
-      {/* Section Valeurs - Nos valeurs */}
-      <Valeurs />
+      {/* Section Exemples - Exemples de réalisations */}
+      <Exemples />
 
       {/* Section Contact - Nous contacter */}
       <Contact />
