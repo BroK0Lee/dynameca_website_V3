@@ -4,57 +4,69 @@ import { useStore } from '../store/useStore.ts'
 
 /**
  * Initialise les animations GSAP pour la section Déposer un projet
+ * - Apparition de l'en-tête au scroll
+ * - Entrée en cascade des 3 cartes
  * @param section - L'élément HTML de la section DeposerUnProjet
  */
 export function initialiserAnimationDeposerUnProjet(section: HTMLElement) {
-  // Animation de la section lors du défilement
+  const declencheur = {
+    trigger: section,
+    start: 'top 75%',
+    toggleActions: 'play none none reverse',
+  }
+
+  // Animation de la section (fondu)
   gsap.fromTo(
     section,
-    {
-      opacity: 0,
-      scale: 0.95,
-    },
+    { opacity: 0 },
     {
       opacity: 1,
-      scale: 1,
-      duration: 1,
+      duration: 0.8,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 80%',
-        end: 'top 20%',
-        toggleActions: 'play none none reverse',
-        markers: false,
-      },
+      scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none reverse' },
     }
   )
 
-  // Animer le titre à l'intérieur de la section
-  const titre = section.querySelector('h1')
+  // Animation du titre
+  const titre = document.getElementById('deposer_titre')
   if (titre) {
     gsap.fromTo(
       titre,
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-          markers: false,
-        },
-      }
+      { opacity: 0, y: -30 },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: declencheur }
     )
   }
 
-  // Synchronisation avec le store Zustand - définir la section active
+  // Animation du sous-titre
+  const sousTitre = document.getElementById('deposer_sous_titre')
+  if (sousTitre) {
+    gsap.fromTo(
+      sousTitre,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.8, delay: 0.15, ease: 'power2.out', scrollTrigger: declencheur }
+    )
+  }
+
+  // Animation des cartes en cascade (chacune décalée de 0.15s)
+  const cartes = section.querySelectorAll('.projet-carte')
+  cartes.forEach((carte, index) => {
+    gsap.fromTo(
+      carte,
+      { opacity: 0, y: 50, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        delay: 0.3 + index * 0.15,
+        ease: 'power3.out',
+        scrollTrigger: declencheur,
+        onComplete: () => gsap.set(carte, { clearProps: 'transform' }),
+      }
+    )
+  })
+
+  // Synchronisation avec le store Zustand
   ScrollTrigger.create({
     trigger: section,
     start: 'top center',

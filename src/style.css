@@ -593,7 +593,7 @@ body.scroll-bloque {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
-/* Déposer un projet Section - Gradient rose/orange */
+/* Déposer un projet Section */
 #deposer-projet {
   background-image: url('/Projet_background.png');
   background-size: cover;
@@ -601,6 +601,124 @@ body.scroll-bloque {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
+  justify-content: flex-start;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  gap: 3rem;
+}
+
+/* En-tête de la section Déposer un projet */
+.deposer-entete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+/* Grille des 3 cartes */
+.deposer-cartes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 80rem;
+  padding: 0 1rem;
+}
+
+/* Carte individuelle */
+.projet-carte {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.projet-carte:hover {
+  border-color: rgba(217, 119, 6, 0.5);
+  transform: translateY(-4px);
+}
+
+/* Icône de la carte */
+.projet-carte-icone {
+  color: #d97706;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(217, 119, 6, 0.1);
+  border-radius: 0.625rem;
+  align-self: center;
+}
+
+/* Titre de la carte */
+.projet-carte-titre {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* Description de la carte */
+.projet-carte-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+/* Liste des livrables */
+.projet-carte-livrables {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Livrable individuel */
+.projet-carte-livrable {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.livrable-puce {
+  color: #d97706;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* Bouton CTA de la carte */
+.projet-carte-bouton {
+  margin-top: auto;
+  padding: 0.75rem 1.25rem;
+  background-color: #d97706;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.projet-carte-bouton:hover {
+  background-color: #b45309;
+  transform: translateY(-1px);
+}
+
+.projet-carte-bouton:active {
+  transform: translateY(0);
 }
 
 /* Comment ça marche Section - Image de fond */
@@ -780,6 +898,15 @@ body.scroll-bloque {
     align-items: center;
     text-align: center;
     padding: 0 1rem;
+  }
+
+  /* Cartes Déposer un projet en colonne sur mobile */
+  .deposer-cartes {
+    grid-template-columns: 1fr;
+  }
+
+  #deposer-projet {
+    padding-top: 6rem;
   }
 
   /* Boutons Hero en colonne */
