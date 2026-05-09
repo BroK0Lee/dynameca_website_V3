@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react'
 import { Lightbulb, Wrench, Package } from 'lucide-react'
-import { initialiserAnimationDeposerUnProjet } from '../Animations/animation_deposer_projet.ts'
 
 /**
  * Données des 3 cartes de segmentation visiteur
@@ -37,17 +35,8 @@ const cartesProjet = [
  * Présente 3 cartes de segmentation pour orienter le visiteur
  */
 function DeposerUnProjet() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      initialiserAnimationDeposerUnProjet(sectionRef.current)
-    }
-  }, [])
-
   return (
     <section
-      ref={sectionRef}
       id="deposer-projet"
       className="section-plein-ecran slide"
     >

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { initialiserAnimationContact } from '../Animations/animation_contact.ts'
 import { scrollVerSection } from '../Animations/animation_app.ts'
 
@@ -7,18 +6,8 @@ import { scrollVerSection } from '../Animations/animation_app.ts'
  * Même disposition que la Hero section (contenu positionné à droite)
  */
 function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    // Initialiser les animations GSAP après le montage du composant
-    if (sectionRef.current) {
-      initialiserAnimationContact(sectionRef.current)
-    }
-  }, [])
-
   return (
     <section
-      ref={sectionRef}
       id="contact"
       className="section-plein-ecran slide"
     >

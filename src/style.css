@@ -728,6 +728,139 @@ body.scroll-bloque {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* En-tête de la section Comment ça marche */
+.ccm-en-tete {
+  width: 100%;
+  padding: 5rem 4rem 2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Piste de défilement horizontal */
+.ccm-piste {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Conteneur des cartes (animé horizontalement par GSAP) */
+.ccm-cartes-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 1rem 4rem;
+  will-change: transform;
+}
+
+/* Carte d'étape individuelle */
+.ccm-carte {
+  min-width: 400px;
+  max-width: 400px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Numéro de l'étape */
+.ccm-carte-numero {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #d97706;
+  line-height: 1;
+  font-family: monospace;
+}
+
+/* Badge label de l'étape */
+.ccm-carte-label {
+  display: inline-flex;
+  padding: 0.3rem 0.9rem;
+  background: rgba(217, 119, 6, 0.15);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #d97706;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  width: fit-content;
+}
+
+/* Titre de la carte */
+.ccm-carte-titre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Description de la carte */
+.ccm-carte-description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.75;
+  flex-grow: 1;
+}
+
+/* Bloc résultat */
+.ccm-carte-resultat {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(217, 119, 6, 0.08);
+  border-left: 3px solid #d97706;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.resultat-fleche {
+  color: #d97706;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.ccm-carte-resultat p {
+  margin: 0;
+}
+
+/* Indicateur de progression (5 points) */
+.ccm-progression {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  flex-shrink: 0;
+}
+
+.ccm-prog-point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease, transform 0.3s ease;
+  cursor: default;
+}
+
+.ccm-prog-point.actif {
+  background: #d97706;
+  transform: scale(1.5);
 }
 
 /* Offres et tarifs Section - Image de fond */
@@ -907,6 +1040,38 @@ body.scroll-bloque {
 
   #deposer-projet {
     padding-top: 6rem;
+  }
+
+  /* Comment ça marche : scroll horizontal désactivé, cartes empilées */
+  #comment-ca-marche {
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-bottom: 3rem;
+  }
+
+  .ccm-en-tete {
+    padding: 5rem 1.5rem 1.5rem;
+  }
+
+  .ccm-piste {
+    overflow: visible;
+    flex: unset;
+  }
+
+  .ccm-cartes-wrapper {
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    gap: 1.25rem;
+    transform: none !important;
+  }
+
+  .ccm-carte {
+    min-width: unset;
+    max-width: 100%;
+  }
+
+  .ccm-progression {
+    display: none;
   }
 
   /* Boutons Hero en colonne */
