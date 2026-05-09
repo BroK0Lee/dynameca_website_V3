@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { ArrowDown } from 'lucide-react'
 import { initialiserAnimationHero } from '../Animations/animation_hero.ts'
+import { scrollVerSection } from '../Animations/animation_app.ts'
 
 /**
  * Composant Hero - Section d'accueil avec animation 3D
@@ -26,6 +27,20 @@ function Hero() {
         <h1 id="hero_title" className="titre-section">DYNAMECA</h1>
         <p id="hero_text" className="sous-titre-section">Concevoir, structurer et concrétiser vos projets</p>
         <p id="hero_description" className="hero-description">De l'idée initiale à la réalisation finale, DYNAMECA vous accompagne à chaque étape de votre projet : cadrage technique, conception 3D, plans, fichiers de fabrication, dossier fournisseur et accompagnement dans la réalisation d'un prototype ou d'une mise en production.</p>
+        <div id="hero_boutons" className="hero-boutons">
+          <button
+            className="hero-bouton hero-bouton-principal"
+            onClick={() => scrollVerSection('deposer-projet')}
+          >
+            Déposer mon projet 3D
+          </button>
+          <button
+            className="hero-bouton hero-bouton-secondaire"
+            onClick={() => scrollVerSection('comment-ca-marche')}
+          >
+            Voir comment ça marche
+          </button>
+        </div>
       </div>
       
       {/* Indicateur de découverte avec flèche */}

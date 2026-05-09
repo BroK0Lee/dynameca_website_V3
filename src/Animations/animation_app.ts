@@ -4,7 +4,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { createIcons, icons } from 'lucide'
 
 // Enregistrement des plugins GSAP
-gsap.registerPlugin(ScrollToPlugin)
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 /**
  * Initialise les animations globales de l'application

@@ -65,10 +65,10 @@ function Header() {
           Offres et tarifs
         </button>
         <button
-          onClick={() => gererClicNavigation('exemples')}
+          onClick={() => gererClicNavigation('realisations')}
           className="nav-lien"
         >
-          Exemples
+          Réalisations
         </button>
         <button
           onClick={() => gererClicNavigation('contact')}

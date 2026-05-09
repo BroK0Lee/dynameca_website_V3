@@ -393,6 +393,21 @@ body.scroll-bloque {
   padding: 2rem;
 }
 
+/* Overlay sombre uniforme sur toutes les sections */
+.section-plein-ecran::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+}
+
+/* Les enfants directs passent au-dessus de l'overlay */
+.section-plein-ecran > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Titres de section */
 .titre-section {
   font-size: 4rem;
@@ -437,19 +452,11 @@ body.scroll-bloque {
   background-attachment: fixed;
 }
 
-#hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 0;
-}
-
 /* Conteneur du texte hero - positionné à droite */
 .hero-contenu {
   position: absolute;
   right: 10rem;
-  top: 40%;
+  top: 45%;
   transform: translateY(-50%);
   z-index: 1;
   display: flex;
@@ -484,6 +491,59 @@ body.scroll-bloque {
   text-align: center;
   line-height: 1.7;
   margin-top: 2rem;
+}
+
+/* Conteneur des boutons d'action Hero */
+.hero-boutons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  opacity: 0;
+}
+
+/* Style commun des boutons Hero */
+.hero-bouton {
+  padding: 0.85rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.hero-bouton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero-bouton:active {
+  transform: translateY(0);
+}
+
+/* Bouton principal - plein amber */
+.hero-bouton-principal {
+  background-color: #d97706;
+  color: #ffffff;
+  border: 2px solid #d97706;
+}
+
+.hero-bouton-principal:hover {
+  background-color: #b45309;
+  border-color: #b45309;
+}
+
+/* Bouton secondaire - contour blanc */
+.hero-bouton-secondaire {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.hero-bouton-secondaire:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 /* Indicateur de découverte avec flèche animée */
@@ -535,21 +595,34 @@ body.scroll-bloque {
 
 /* Déposer un projet Section - Gradient rose/orange */
 #deposer-projet {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background-image: url('/Projet_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-/* Comment ça marche Section - Gradient bleu cyan */
+/* Comment ça marche Section - Image de fond */
 #comment-ca-marche {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background-image: url('/Comment_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-/* Offres et tarifs Section - Gradient vert turquoise */
+/* Offres et tarifs Section - Image de fond */
 #offres-tarifs {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background-image: url('/Offres_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-/* Exemples Section - Gradient rose jaune */
-#exemples {
+/* Réalisations Section - Gradient rose jaune */
+#realisations {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 

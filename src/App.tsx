@@ -4,7 +4,7 @@ import Hero from './Pages/Hero.tsx'
 import DeposerUnProjet from './Pages/DeposerUnProjet.tsx'
 import CommentCaMarche from './Pages/CommentCaMarche.tsx'
 import OffresEtTarifs from './Pages/OffresEtTarifs.tsx'
-import Exemples from './Pages/Exemples.tsx'
+import Realisations from './Pages/Realisations.tsx'
 import Contact from './Pages/Contact.tsx'
 import Compte from './Pages/Compte.tsx'
 import { initialiserAnimationsApp } from './Animations/animation_app.ts'
@@ -36,8 +36,8 @@ function App() {
       {/* Section OffresEtTarifs - Offres et tarifs */}
       <OffresEtTarifs />
 
-      {/* Section Exemples - Exemples de réalisations */}
-      <Exemples />
+      {/* Section Realisations - Réalisations */}
+      <Realisations />
 
       {/* Section Contact - Nous contacter */}
       <Contact />

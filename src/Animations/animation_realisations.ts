@@ -3,10 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useStore } from '../store/useStore.ts'
 
 /**
- * Initialise les animations GSAP pour la section Exemples
- * @param section - L'élément HTML de la section Exemples
+ * Initialise les animations GSAP pour la section Réalisations
+ * @param section - L'élément HTML de la section Realisations
  */
-export function initialiserAnimationExemples(section: HTMLElement) {
+export function initialiserAnimationRealisations(section: HTMLElement) {
   // Animation de la section lors du défilement
   gsap.fromTo(
     section,
@@ -59,7 +59,7 @@ export function initialiserAnimationExemples(section: HTMLElement) {
     trigger: section,
     start: 'top center',
     end: 'bottom center',
-    onEnter: () => useStore.getState().definirSectionActive('exemples'),
-    onEnterBack: () => useStore.getState().definirSectionActive('exemples'),
+    onEnter: () => useStore.getState().definirSectionActive('realisations'),
+    onEnterBack: () => useStore.getState().definirSectionActive('realisations'),
   })
 }

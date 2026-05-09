@@ -13,6 +13,8 @@ import { useStore } from '../store/useStore.ts'
 export function initialiserAnimationHero(section: HTMLElement) {
   const heroTitre = document.getElementById('hero_title')
   const heroTexte = document.getElementById('hero_text')
+  const heroDescription = document.getElementById('hero_description')
+  const heroBoutons = document.getElementById('hero_boutons')
   const heroDecouverte = document.getElementById('hero_decouverte')
 
   // Rendre la section visible immédiatement (pas d'attente de scroll pour Hero)
@@ -68,6 +70,48 @@ export function initialiserAnimationHero(section: HTMLElement) {
       onComplete: () => {
         // Nettoyage pour éviter tout offset résiduel
         gsap.set(heroTexte, { clearProps: 'transform' })
+      },
+    })
+  }
+
+  // Animation de la description Hero (après le sous-titre)
+  if (heroDescription) {
+    // État initial de la description
+    gsap.set(heroDescription, {
+      opacity: 0,
+      y: 30,
+    })
+
+    // Animation d'entrée de la description
+    gsap.to(heroDescription, {
+      duration: 1.2,
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      delay: 3, // Se lance après le sous-titre (2 + 1)
+      onComplete: () => {
+        gsap.set(heroDescription, { clearProps: 'transform' })
+      },
+    })
+  }
+
+  // Animation des boutons d'action (après la description)
+  if (heroBoutons) {
+    // État initial des boutons
+    gsap.set(heroBoutons, {
+      opacity: 0,
+      y: 20,
+    })
+
+    // Animation d'entrée des boutons
+    gsap.to(heroBoutons, {
+      duration: 0.8,
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      delay: 4, // Se lance après la description (3 + 1)
+      onComplete: () => {
+        gsap.set(heroBoutons, { clearProps: 'transform' })
       },
     })
   }
