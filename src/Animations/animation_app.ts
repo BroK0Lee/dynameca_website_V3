@@ -34,12 +34,13 @@ export function initialiserAnimationsApp() {
 }
 
 /**
- * Fonction utilitaire pour créer une animation de scroll fluide vers une section
+ * Fonction utilitaire pour scroller vers une section
  * @param cible - ID de la section cible (ex: 'hero', 'services')
+ * @param instantane - Si true, jump immédiat sans durée (utile pour sauter par-dessus une section épinglée)
  */
-export function scrollVerSection(cible: string) {
+export function scrollVerSection(cible: string, instantane = false) {
   gsap.to(window, {
-    duration: 0.2,
+    duration: instantane ? 0 : 0.2,
     scrollTo: { y: `#${cible}`, offsetY: 0 },
     ease: 'power2.inOut',
   })

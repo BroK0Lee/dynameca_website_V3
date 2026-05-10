@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { initialiserAnimationHeader } from '../Animations/animation_header.ts'
 import { scrollVerSection } from '../Animations/animation_app.ts'
+import { useStore } from '../store/useStore.ts'
 
 /**
  * Composant Header - Navigation principale fixe
@@ -11,6 +12,11 @@ import { scrollVerSection } from '../Animations/animation_app.ts'
 function Header() {
   const headerRef = useRef<HTMLElement>(null)
   const [menuOuvert, setMenuOuvert] = useState(false)
+  const sectionActive = useStore((etat) => etat.sectionActive)
+
+  // Retourne 'nav-lien nav-lien--actif' si la section est active, sinon 'nav-lien'
+  const classeNavLien = (sectionId: string) =>
+    sectionActive === sectionId ? 'nav-lien nav-lien--actif' : 'nav-lien'
 
   useEffect(() => {
     // Initialiser les animations GSAP après le montage du composant
@@ -43,12 +49,12 @@ function Header() {
 
       {/* Navigation desktop */}
       <nav className="header-navigation">
-        <button onClick={() => gererClicNavigation('hero')} className="nav-lien">Accueil</button>
-        <button onClick={() => gererClicNavigation('deposer-projet')} className="nav-lien">Déposer un projet</button>
-        <button onClick={() => gererClicNavigation('comment-ca-marche')} className="nav-lien">Comment ça marche</button>
-        <button onClick={() => gererClicNavigation('offres-tarifs')} className="nav-lien">Offres et tarifs</button>
-        <button onClick={() => gererClicNavigation('realisations')} className="nav-lien">Réalisations</button>
-        <button onClick={() => gererClicNavigation('contact')} className="nav-lien">Contact</button>
+        <button onClick={() => gererClicNavigation('hero')} className={classeNavLien('hero')}>Accueil</button>
+        <button onClick={() => gererClicNavigation('deposer-projet')} className={classeNavLien('deposer-projet')}>Déposer un projet</button>
+        <button onClick={() => gererClicNavigation('comment-ca-marche')} className={classeNavLien('comment-ca-marche')}>Comment ça marche</button>
+        <button onClick={() => gererClicNavigation('offres-tarifs')} className={classeNavLien('offres-tarifs')}>Offres et tarifs</button>
+        <button onClick={() => gererClicNavigation('realisations')} className={classeNavLien('realisations')}>Réalisations</button>
+        <button onClick={() => gererClicNavigation('contact')} className={classeNavLien('contact')}>Contact</button>
       </nav>
 
       {/* Bouton hamburger - visible uniquement sur mobile */}

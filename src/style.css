@@ -314,7 +314,7 @@ body.scroll-bloque {
 .logo-bouton {
   background: none;
   border: none;
-  color: #ffffff;
+  color: #d97706; /* Amber 600 — couleur permanente */
   font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -367,18 +367,13 @@ body.scroll-bloque {
   width: 80%;
 }
 
-/* Lien Mon Compte - Style spécial */
-.nav-lien-compte {
-  color: #d97706; /* Toujours Amber 600 */
-  font-weight: 600;
+/* Lien de la section actuellement active */
+.nav-lien--actif {
+  color: #d97706; /* Amber 600 */
 }
 
-.nav-lien-compte::after {
-  background-color: #ffffff; /* Soulignement blanc au hover */
-}
-
-.nav-lien-compte:hover {
-  color: #ffffff; /* Hover blanc (inverse des autres) */
+.nav-lien--actif::after {
+  width: 80%; /* Soulignement permanent */
 }
 
 /* Sections plein écran */
@@ -571,26 +566,6 @@ body.scroll-bloque {
 
 .decouverte-fleche {
   color: #d97706; /* Amber 600 pour cohérence */
-}
-
-/* Configurator Section - Gradient rose/orange */
-#configurator {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-/* Services Section - Gradient bleu cyan */
-#services {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-/* Boutique Section - Gradient vert turquoise */
-#boutique {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-}
-
-/* Valeurs Section - Gradient rose jaune */
-#valeurs {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
 /* Déposer un projet Section */
@@ -870,6 +845,140 @@ body.scroll-bloque {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  justify-content: center;
+}
+
+/* Offres et Tarifs — grille deux colonnes */
+.ot-grille {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 12rem;
+  align-items: center;
+  padding: 6rem 3rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Colonne gauche — titre + paragraphes */
+.ot-colonne-gauche {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Colonne droite — mise en évidence + actions */
+.ot-colonne-droite {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.ot-titre {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.ot-paragraphe {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.75;
+}
+
+/* Phrase d'objectif — légèrement mise en avant */
+.ot-objectif {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  font-style: italic;
+}
+
+/* Bloc de mise en évidence du prix d'entrée */
+.ot-mise-en-evidence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.75rem 2rem;
+  border-radius: 16px;
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+}
+
+.ot-mev-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ot-mev-prix-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.ot-mev-depuis {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Prix — grand, amber, légèrement lumineux */
+.ot-mev-prix {
+  font-size: 3.25rem;
+  font-weight: 700;
+  color: #d97706;
+  line-height: 1;
+  text-shadow: 0 0 28px rgba(217, 119, 6, 0.45);
+}
+
+/* Actions — bouton CTA + lien réalisations */
+.ot-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.ot-bouton-cta {
+  background-color: #d97706;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ot-bouton-cta:hover {
+  background-color: #b45309;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+}
+
+.ot-lien-realisations {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.3s ease;
+}
+
+.ot-lien-realisations:hover {
+  color: #ffffff;
 }
 
 /* Réalisations Section - Gradient rose jaune */
@@ -1091,6 +1200,17 @@ body.scroll-bloque {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+  }
+
+  /* Offres et tarifs : grille → colonne unique */
+  .ot-grille {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 6rem 1.5rem 2rem;
+  }
+
+  .ot-mev-prix {
+    font-size: 2.5rem;
   }
 
   /* Fix background-attachment: fixed buggé sur iOS Safari */
