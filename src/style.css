@@ -981,13 +981,245 @@ body.scroll-bloque {
   color: #ffffff;
 }
 
-/* Réalisations Section - Gradient rose jaune */
+/* Réalisations Section */
 #realisations {
   background-image: url('/Realisations_background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  /* Scroll naturel — pas de min-height: 100vh, la section s'étend avec son contenu */
+  min-height: auto;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* Wrapper global de la section */
+.real-section {
+  padding: 0;
+}
+
+/* En-tête centré */
+.real-en-tete {
+  width: 100%;
+  padding: 7rem 2rem 3rem;
+  text-align: center;
+}
+
+.real-titre {
+  margin-bottom: 0.75rem;
+}
+
+.real-sous-titre {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* Liste des projets — empilés verticalement */
+.real-liste {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 3rem 6rem;
+}
+
+/* Bloc d'un projet — grille 2 colonnes */
+.real-projet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Variante inversée : texte à gauche, visuel à droite */
+.real-projet--inverse {
+  direction: rtl;
+}
+
+.real-projet--inverse > * {
+  direction: ltr;
+}
+
+/* Zone visuelle — placeholder */
+.real-projet-visuel {
+  position: relative;
+}
+
+.real-projet-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grille décorative en arrière-plan du placeholder */
+.real-projet-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 119, 6, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 119, 6, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.real-placeholder-icone {
+  color: rgba(217, 119, 6, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.real-placeholder-texte {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Numéro en filigrane dans le placeholder */
+.real-placeholder-numero {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(217, 119, 6, 0.06);
+  line-height: 1;
+  font-family: monospace;
+  user-select: none;
+}
+
+/* Viewer 3D — conteneur qui reprend la même proportion que le placeholder */
+.viewer3d-conteneur {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  position: relative;
+}
+
+/* model-viewer doit remplir tout le conteneur */
+.viewer3d-conteneur model-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* Indication interactive en bas du viewer */
+.viewer3d-indication {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.9rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+/* Contenu texte */
+.real-projet-contenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Numéro de projet dans le texte */
+.real-projet-numero {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #d97706;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: monospace;
+}
+
+/* Contexte client */
+.real-projet-contexte {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Titre du projet */
+.real-projet-titre {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Description */
+.real-projet-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+}
+
+/* Liste des livrables */
+.real-projet-livrables {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  border-left: 3px solid rgba(217, 119, 6, 0.5);
+}
+
+.real-projet-livrable {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Tags */
+.real-projet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.real-tag {
+  padding: 0.3rem 0.85rem;
+  border-radius: 2rem;
+  background: rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  font-size: 0.8rem;
+  color: #d97706;
+  font-weight: 500;
 }
 
 /* Contact Section - Image hero en fond */
@@ -1211,6 +1443,22 @@ body.scroll-bloque {
 
   .ot-mev-prix {
     font-size: 2.5rem;
+  }
+
+  /* Réalisations : projets en colonne unique */
+  .real-liste {
+    padding: 0 1.5rem 4rem;
+  }
+
+  .real-projet {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    direction: ltr;
+  }
+
+  .real-projet--inverse {
+    direction: ltr;
   }
 
   /* Fix background-attachment: fixed buggé sur iOS Safari */

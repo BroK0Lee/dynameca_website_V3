@@ -32,7 +32,7 @@ function Hero() {
             className="hero-bouton hero-bouton-principal"
             onClick={() => scrollVerSection('deposer-projet')}
           >
-            Déposer mon projet 3D
+            Déposer mon projet
           </button>
           <button
             className="hero-bouton hero-bouton-secondaire"
