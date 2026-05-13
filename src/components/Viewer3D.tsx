@@ -9,6 +9,8 @@ interface PropsViewer3D {
   alt?: string
   /** Classe CSS supplémentaire */
   className?: string
+  /** Orientation initiale du modèle — format "pitch yaw roll" (ex: '0deg -90deg 0deg') */
+  orientation?: string
 }
 
 /**
@@ -16,7 +18,7 @@ interface PropsViewer3D {
  * On évite le rendu JSX du custom element pour contourner le traitement
  * de React 19 qui bloque la transmission de certains attributs natifs.
  */
-function Viewer3D({ src, alt = 'Modèle 3D interactif', className = '' }: PropsViewer3D) {
+function Viewer3D({ src, alt = 'Modèle 3D interactif', className = '', orientation = '0deg 0deg 0deg' }: PropsViewer3D) {
   const refConteneur = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -33,7 +35,11 @@ function Viewer3D({ src, alt = 'Modèle 3D interactif', className = '' }: PropsV
     viewer.setAttribute('shadow-intensity', '1')
     viewer.setAttribute('shadow-softness', '0.8')
     viewer.setAttribute('exposure', '0.9')
-    viewer.style.cssText = 'width:100%;height:100%;display:block;background-color:transparent;'
+    viewer.setAttribute('min-camera-orbit', 'auto 0deg auto')
+    viewer.setAttribute('max-camera-orbit', 'auto 180deg auto')
+    // Orientation initiale du modèle — définie par la prop (format : "pitch yaw roll")
+    viewer.setAttribute('orientation', orientation)
+    viewer.style.cssText = 'width:100%;height:100%;display:block;background-color:transparent;touch-action:none;'
 
     // Connecter au DOM EN PREMIER — model-viewer initialise son
     // IntersectionObserver à la connexion. Si src est posé avant,
@@ -49,7 +55,7 @@ function Viewer3D({ src, alt = 'Modèle 3D interactif', className = '' }: PropsV
     return () => {
       viewer.remove()
     }
-  }, [src, alt])
+  }, [src, alt, orientation])
 
   return (
     <div className={`viewer3d-conteneur ${className}`}>

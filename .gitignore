@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Fichiers 3D (trop lourds pour Git)
+public/Support.glb
+public/9999.13.89.64G.002_-_BUSE_INJECTION.glb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
